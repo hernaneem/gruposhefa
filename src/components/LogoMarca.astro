@@ -1,0 +1,30 @@
+---
+// ─────────────────────────────────────────────────────────────────────────────
+//  ISOTIPO SIMPLIFICADO — GRUPO SHEFA
+//  Versión sencilla de las "torres" del logo (skyline ascendente), recreada
+//  en SVG para que se vea nítida a cualquier tamaño y pueda ir en blanco o verde.
+//  Las torres laterales toman el color del texto (currentColor); la torre
+//  central siempre va en dorado, como en el manual de marca.
+//  Uso:  <LogoMarca class="w-10 h-10 text-white" />
+// ─────────────────────────────────────────────────────────────────────────────
+
+interface Props {
+  class?: string;
+}
+const { class: clase = 'w-10 h-10 text-white' } = Astro.props;
+---
+
+<svg
+  class={clase}
+  viewBox="0 0 64 56"
+  fill="none"
+  aria-hidden="true"
+>
+  <!-- Torres laterales (color del texto) -->
+  <polygon points="8,52 8,34 11.5,28 15,34 15,52" fill="currentColor" />
+  <polygon points="17,52 17,24 20.5,17 24,24 24,52" fill="currentColor" />
+  <polygon points="40,52 40,24 43.5,17 47,24 47,52" fill="currentColor" />
+  <polygon points="49,52 49,34 52.5,28 56,34 56,52" fill="currentColor" />
+  <!-- Torre central, siempre dorada -->
+  <polygon points="26,52 26,18 32,5 38,18 38,52" fill="#C7A765" />
+</svg>

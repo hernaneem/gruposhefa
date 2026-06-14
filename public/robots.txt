@@ -1,0 +1,6 @@
+# Permitir que los buscadores indexen todo el sitio.
+User-agent: *
+Allow: /
+
+# Mapa del sitio (lo genera Astro automáticamente al construir).
+Sitemap: https://gruposhefa.com/sitemap-index.xml

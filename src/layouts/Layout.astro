@@ -1,0 +1,89 @@
+---
+// ─────────────────────────────────────────────────────────────────────────────
+//  LAYOUT BASE — GRUPO SHEFA
+//  Estructura común de todas las páginas: <head> con SEO, encabezado, el
+//  contenido de cada página (<slot/>), el pie de página y el botón de WhatsApp.
+// ─────────────────────────────────────────────────────────────────────────────
+
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import BotonWhatsapp from '../components/BotonWhatsapp.astro';
+import { sitio } from '../data/sitio.js';
+import { ruta } from '../lib/rutas.ts';
+
+interface Props {
+  titulo: string;
+  descripcion?: string;
+}
+
+const {
+  titulo,
+  descripcion = sitio.descripcion,
+} = Astro.props;
+
+// Título que aparece en la pestaña del navegador y en buscadores.
+const tituloCompleto = `${titulo} · ${sitio.nombre}`;
+// URL canónica de esta página: dominio configurado (Astro.site) + la ruta actual
+// (Astro.url.pathname ya incluye la base, ej. /gruposhefa/servicios/auditoria).
+const origen = Astro.site ?? new URL(sitio.url);
+const urlCanonica = new URL(Astro.url.pathname, origen).href;
+const urlImagen = new URL(ruta('logo-shefa.png'), origen).href;
+---
+
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Favicon (ícono de la pestaña del navegador) -->
+    <link rel="icon" type="image/svg+xml" href={ruta('favicon.svg')} />
+    <link rel="icon" type="image/png" sizes="32x32" href={ruta('favicon-32.png')} />
+    <link rel="apple-touch-icon" sizes="180x180" href={ruta('apple-touch-icon.png')} />
+
+    <!-- SEO básico -->
+    <title>{tituloCompleto}</title>
+    <meta name="description" content={descripcion} />
+    <link rel="canonical" href={urlCanonica} />
+    <meta name="theme-color" content="#0F5C46" />
+
+    <!-- Redes sociales (Open Graph) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_MX" />
+    <meta property="og:site_name" content={sitio.nombre} />
+    <meta property="og:title" content={tituloCompleto} />
+    <meta property="og:description" content={descripcion} />
+    <meta property="og:url" content={urlCanonica} />
+    <meta property="og:image" content={urlImagen} />
+    <meta name="twitter:card" content="summary" />
+
+    <!-- Datos estructurados para buscadores (negocio profesional) -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'ProfessionalService',
+        name: sitio.nombre,
+        description: sitio.descripcion,
+        url: sitio.url,
+        email: sitio.correo,
+        telephone: sitio.telefono,
+        areaServed: 'MX',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: sitio.direccion,
+          addressCountry: 'MX',
+        },
+      })}
+    />
+  </head>
+
+  <body class="flex min-h-screen flex-col">
+    <Header />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+    <BotonWhatsapp />
+  </body>
+</html>

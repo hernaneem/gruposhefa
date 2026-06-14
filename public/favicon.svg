@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Fondo verde profundo de marca, con esquinas redondeadas -->
+  <rect width="64" height="64" rx="14" fill="#083930"/>
+  <!-- Isotipo: torres ascendentes (laterales en blanco, central en dorado) -->
+  <g transform="translate(0,4)">
+    <polygon points="8,52 8,34 11.5,28 15,34 15,52" fill="#FFFFFF"/>
+    <polygon points="17,52 17,24 20.5,17 24,24 24,52" fill="#FFFFFF"/>
+    <polygon points="40,52 40,24 43.5,17 47,24 47,52" fill="#FFFFFF"/>
+    <polygon points="49,52 49,34 52.5,28 56,34 56,52" fill="#FFFFFF"/>
+    <polygon points="26,52 26,18 32,5 38,18 38,52" fill="#C7A765"/>
+  </g>
+</svg>

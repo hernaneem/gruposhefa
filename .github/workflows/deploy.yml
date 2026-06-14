@@ -1,0 +1,44 @@
+# ─────────────────────────────────────────────────────────────────────────────
+#  PUBLICACIÓN AUTOMÁTICA EN GITHUB PAGES — GRUPO SHEFA
+#  Cada vez que subes cambios a la rama "main", GitHub construye el sitio y lo
+#  publica solo. No tienes que hacer nada manual.
+# ─────────────────────────────────────────────────────────────────────────────
+name: Desplegar sitio a GitHub Pages
+
+on:
+  # Se ejecuta al subir cambios a "main".
+  push:
+    branches: [main]
+  # También permite ejecutarlo a mano desde la pestaña "Actions".
+  workflow_dispatch:
+
+# Permisos que necesita para publicar en Pages.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Si hay varias publicaciones seguidas, deja solo la última.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  construir:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v4
+      - name: Construir el sitio con Astro
+        uses: withastro/action@v3
+
+  publicar:
+    needs: construir
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publicar en GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

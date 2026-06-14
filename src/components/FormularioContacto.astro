@@ -1,0 +1,136 @@
+---
+// ─────────────────────────────────────────────────────────────────────────────
+//  FORMULARIO DE CONTACTO — GRUPO SHEFA
+//  De momento envía el mensaje por correo usando "mailto:" (abre el programa
+//  de correo del visitante con el mensaje ya armado).
+//
+//  PARA CONECTAR UN SERVICIO DE CORREO DESPUÉS (ej. Formspree, Resend, etc.):
+//  cambia el atributo "action" del formulario por la URL del servicio y quita
+//  el bloque de codigo del final. El resto del formulario ya esta listo.
+// ─────────────────────────────────────────────────────────────────────────────
+
+import { sitio } from '../data/sitio.js';
+import { ruta } from '../lib/rutas.ts';
+
+// Lista de servicios para el menú desplegable del formulario.
+import { categorias } from '../data/servicios.js';
+---
+
+<form
+  id="formulario-contacto"
+  action={`mailto:${sitio.correo}`}
+  method="post"
+  enctype="text/plain"
+  class="space-y-5"
+>
+  <div class="grid gap-5 sm:grid-cols-2">
+    <div>
+      <label for="nombre" class="mb-1.5 block font-titulo text-sm font-medium text-tinta">
+        Nombre
+      </label>
+      <input
+        type="text"
+        id="nombre"
+        name="Nombre"
+        required
+        autocomplete="name"
+        class="w-full rounded-lg border border-black/10 bg-white px-4 py-3 text-tinta outline-none transition-colors placeholder:text-tinta/40 focus:border-verde"
+        placeholder="Su nombre"
+      />
+    </div>
+    <div>
+      <label for="empresa" class="mb-1.5 block font-titulo text-sm font-medium text-tinta">
+        Empresa
+      </label>
+      <input
+        type="text"
+        id="empresa"
+        name="Empresa"
+        autocomplete="organization"
+        class="w-full rounded-lg border border-black/10 bg-white px-4 py-3 text-tinta outline-none transition-colors placeholder:text-tinta/40 focus:border-verde"
+        placeholder="Nombre de su empresa"
+      />
+    </div>
+  </div>
+
+  <div class="grid gap-5 sm:grid-cols-2">
+    <div>
+      <label for="correo" class="mb-1.5 block font-titulo text-sm font-medium text-tinta">
+        Correo
+      </label>
+      <input
+        type="email"
+        id="correo"
+        name="Correo"
+        required
+        autocomplete="email"
+        class="w-full rounded-lg border border-black/10 bg-white px-4 py-3 text-tinta outline-none transition-colors placeholder:text-tinta/40 focus:border-verde"
+        placeholder="correo@empresa.com"
+      />
+    </div>
+    <div>
+      <label for="telefono" class="mb-1.5 block font-titulo text-sm font-medium text-tinta">
+        Teléfono
+      </label>
+      <input
+        type="tel"
+        id="telefono"
+        name="Teléfono"
+        autocomplete="tel"
+        class="w-full rounded-lg border border-black/10 bg-white px-4 py-3 text-tinta outline-none transition-colors placeholder:text-tinta/40 focus:border-verde"
+        placeholder="55 0000 0000"
+      />
+    </div>
+  </div>
+
+  <div>
+    <label for="servicio" class="mb-1.5 block font-titulo text-sm font-medium text-tinta">
+      ¿En qué le podemos ayudar?
+    </label>
+    <select
+      id="servicio"
+      name="Servicio de interés"
+      class="w-full rounded-lg border border-black/10 bg-white px-4 py-3 text-tinta outline-none transition-colors focus:border-verde"
+    >
+      <option value="">Seleccione un área…</option>
+      {categorias.map((c) => <option value={c.titulo}>{c.titulo}</option>)}
+      <option value="Otro">Otro</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="mensaje" class="mb-1.5 block font-titulo text-sm font-medium text-tinta">
+      Mensaje
+    </label>
+    <textarea
+      id="mensaje"
+      name="Mensaje"
+      rows="4"
+      class="w-full rounded-lg border border-black/10 bg-white px-4 py-3 text-tinta outline-none transition-colors placeholder:text-tinta/40 focus:border-verde"
+      placeholder="Cuéntenos brevemente su situación y con gusto lo orientamos."
+    ></textarea>
+  </div>
+
+  <button type="submit" class="boton w-full sm:w-auto">Enviar mensaje</button>
+
+  <p class="text-xs text-tinta/50">
+    Al enviar, acepta nuestro
+    <a href={ruta('aviso-de-privacidad')} class="underline hover:text-verde">Aviso de Privacidad</a>.
+    Sus datos se tratan con total discreción.
+  </p>
+</form>
+
+<script>
+  // Ayuda al "mailto:" a armar un asunto claro con los datos del formulario.
+  // (Cuando conectes un servicio de correo real, puedes borrar este bloque.)
+  const form = document.getElementById('formulario-contacto') as HTMLFormElement | null;
+  form?.addEventListener('submit', () => {
+    const nombre = (form.querySelector('#nombre') as HTMLInputElement)?.value || 'Sitio web';
+    form.setAttribute(
+      'action',
+      `mailto:contacto@gruposhefa.com?subject=${encodeURIComponent(
+        'Consulta de ' + nombre + ' — gruposhefa.com',
+      )}`,
+    );
+  });
+</script>

@@ -1,0 +1,14 @@
+# Dependencias
+node_modules/
+
+# Resultado de la construcción
+dist/
+.astro/
+
+# Variables de entorno y archivos del sistema
+.env
+.env.production
+.DS_Store
+
+# Registros
+npm-debug.log*

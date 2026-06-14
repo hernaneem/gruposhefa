@@ -1,0 +1,114 @@
+---
+// ─────────────────────────────────────────────────────────────────────────────
+//  ENCABEZADO / NAVEGACIÓN — GRUPO SHEFA
+//  Barra superior fija con el logo y los enlaces a las secciones del home.
+//  En celular, los enlaces se ocultan tras un botón de menú (☰).
+// ─────────────────────────────────────────────────────────────────────────────
+
+import { enlaceWhatsapp } from '../data/sitio.js';
+import { ruta } from '../lib/rutas.ts';
+
+// Enlaces del menú. Como el home es de una sola página, apuntan a sus secciones
+// con #ancla. ruta() arma el enlace al inicio + el ancla, viva donde viva el sitio.
+const enlaces = [
+  { texto: 'Quiénes somos', destino: ruta('#quienes-somos') },
+  { texto: 'Servicios', destino: ruta('#servicios') },
+  { texto: 'Por qué Shefa', destino: ruta('#por-que-shefa') },
+  { texto: 'Contacto', destino: ruta('#contacto') },
+];
+---
+
+<header
+  class="fixed inset-x-0 top-0 z-50 border-b border-black/5 bg-white/90 backdrop-blur-md"
+>
+  <div class="contenedor flex h-20 items-center justify-between gap-4">
+    <!-- Logo -->
+    <a href={ruta()} class="flex items-center" aria-label="Grupo Shefa — inicio">
+      <img
+        src={ruta('logo-shefa.png')}
+        alt="Grupo Shefa"
+        class="h-11 w-auto md:h-12"
+        width="260"
+        height="120"
+      />
+    </a>
+
+    <!-- Navegación en computadora -->
+    <nav class="hidden items-center gap-8 lg:flex" aria-label="Navegación principal">
+      {
+        enlaces.map((e) => (
+          <a
+            href={e.destino}
+            class="font-titulo text-sm font-medium text-tinta/80 transition-colors hover:text-verde"
+          >
+            {e.texto}
+          </a>
+        ))
+      }
+      <a href={ruta('#contacto')} class="boton-dorado !px-6 !py-2.5 text-sm">
+        Agende una consulta
+      </a>
+    </nav>
+
+    <!-- Botón de menú en celular -->
+    <button
+      id="boton-menu"
+      class="inline-flex items-center justify-center rounded-md p-2 text-verde lg:hidden"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="menu-movil"
+    >
+      <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="4" y1="7" x2="20" y2="7" />
+        <line x1="4" y1="12" x2="20" y2="12" />
+        <line x1="4" y1="17" x2="20" y2="17" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Menú desplegable en celular (oculto por defecto) -->
+  <nav
+    id="menu-movil"
+    class="hidden border-t border-black/5 bg-white lg:hidden"
+    aria-label="Navegación móvil"
+  >
+    <div class="contenedor flex flex-col py-4">
+      {
+        enlaces.map((e) => (
+          <a
+            href={e.destino}
+            class="enlace-movil border-b border-black/5 py-3 font-titulo font-medium text-tinta/80"
+          >
+            {e.texto}
+          </a>
+        ))
+      }
+      <a href={enlaceWhatsapp} target="_blank" rel="noopener" class="boton-dorado mt-4">
+        Agende una consulta
+      </a>
+    </div>
+  </nav>
+</header>
+
+<!-- Espaciador para que el contenido no quede tapado por el encabezado fijo -->
+<div class="h-20" aria-hidden="true"></div>
+
+<script>
+  // Abre y cierra el menú en celular.
+  const boton = document.getElementById('boton-menu');
+  const menu = document.getElementById('menu-movil');
+
+  boton?.addEventListener('click', () => {
+    const abierto = menu?.classList.toggle('hidden') === false;
+    boton.setAttribute('aria-expanded', String(abierto));
+    boton.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
+  });
+
+  // Al tocar un enlace, cierra el menú.
+  document.querySelectorAll('.enlace-movil').forEach((a) => {
+    a.addEventListener('click', () => {
+      menu?.classList.add('hidden');
+      boton?.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>

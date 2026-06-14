@@ -1,0 +1,98 @@
+---
+// ─────────────────────────────────────────────────────────────────────────────
+//  PIE DE PÁGINA — GRUPO SHEFA
+//  Fondo verde profundo, con logo, navegación, datos de contacto y el enlace
+//  al Aviso de Privacidad.
+// ─────────────────────────────────────────────────────────────────────────────
+
+import LogoMarca from './LogoMarca.astro';
+import { sitio } from '../data/sitio.js';
+import { categorias } from '../data/servicios.js';
+import { ruta } from '../lib/rutas.ts';
+
+const anio = new Date().getFullYear();
+
+const enlaces = [
+  { texto: 'Quiénes somos', destino: ruta('#quienes-somos') },
+  { texto: 'Servicios', destino: ruta('#servicios') },
+  { texto: 'Por qué Shefa', destino: ruta('#por-que-shefa') },
+  { texto: 'Contacto', destino: ruta('#contacto') },
+];
+---
+
+<footer class="bg-verde-profundo text-white">
+  <div class="contenedor py-16">
+    <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]">
+      <!-- Marca -->
+      <div>
+        <div class="flex items-center gap-3">
+          <LogoMarca class="h-12 w-12 text-white" />
+          <span class="font-titulo text-xl font-bold tracking-wide">
+            GRUPO<br />SHEFA
+          </span>
+        </div>
+        <p class="mt-5 max-w-xs text-sm leading-relaxed text-white/70">
+          {sitio.descripcion}
+        </p>
+        <p class="mt-5 font-titulo text-dorado">{sitio.tagline}</p>
+      </div>
+
+      <!-- Navegación -->
+      <nav aria-label="Enlaces del sitio">
+        <h2 class="etiqueta mb-4">Navegación</h2>
+        <ul class="space-y-3 text-sm text-white/80">
+          {
+            enlaces.map((e) => (
+              <li>
+                <a href={e.destino} class="transition-colors hover:text-dorado">
+                  {e.texto}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+
+        <h2 class="etiqueta mb-4 mt-8">Servicios</h2>
+        <ul class="space-y-3 text-sm text-white/80">
+          {
+            categorias.map((c) => (
+              <li>
+                <a href={ruta('#servicios')} class="transition-colors hover:text-dorado">
+                  {c.titulo}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <!-- Contacto -->
+      <div>
+        <h2 class="etiqueta mb-4">Contacto</h2>
+        <ul class="space-y-3 text-sm text-white/80">
+          <li>
+            <a href={`mailto:${sitio.correo}`} class="transition-colors hover:text-dorado">
+              {sitio.correo}
+            </a>
+          </li>
+          <li>
+            <a href={`tel:${sitio.telefonoEnlace}`} class="transition-colors hover:text-dorado">
+              {sitio.telefono}
+            </a>
+          </li>
+          <li>{sitio.direccion}</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Línea inferior -->
+    <div
+      class="mt-14 flex flex-col items-start justify-between gap-4 border-t border-white/15 pt-7 text-sm text-white/60 sm:flex-row sm:items-center"
+    >
+      <p>© {anio} {sitio.nombre}. Todos los derechos reservados.</p>
+      <a href={ruta('aviso-de-privacidad')} class="transition-colors hover:text-dorado">
+        Aviso de Privacidad
+      </a>
+    </div>
+  </div>
+</footer>

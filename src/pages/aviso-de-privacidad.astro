@@ -1,0 +1,100 @@
+---
+// ─────────────────────────────────────────────────────────────────────────────
+//  AVISO DE PRIVACIDAD — GRUPO SHEFA
+//  Texto base conforme a la Ley Federal de Protección de Datos Personales en
+//  Posesión de los Particulares. REVÍSALO con su área legal y ajústalo a los
+//  datos y finalidades reales antes de publicarlo.
+// ─────────────────────────────────────────────────────────────────────────────
+
+import Layout from '../layouts/Layout.astro';
+import { sitio } from '../data/sitio.js';
+import { ruta } from '../lib/rutas.ts';
+
+const secciones = [
+  {
+    titulo: 'Responsable de sus datos',
+    parrafos: [
+      `${sitio.nombre}, con domicilio en ${sitio.direccion}, es responsable del tratamiento y protección de sus datos personales, conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares.`,
+    ],
+  },
+  {
+    titulo: 'Datos que recabamos',
+    parrafos: [
+      'Recabamos los datos que usted nos proporciona al contactarnos (nombre, empresa, correo electrónico, teléfono y el mensaje de su consulta), así como los datos necesarios para prestarle nuestros servicios fiscales, contables, jurídicos y financieros.',
+    ],
+  },
+  {
+    titulo: 'Finalidades del tratamiento',
+    parrafos: [
+      'Utilizamos sus datos para atender su solicitud, ponernos en contacto con usted, prestarle nuestros servicios y dar cumplimiento a las obligaciones legales aplicables. No utilizamos sus datos para fines distintos a los aquí señalados sin su consentimiento.',
+    ],
+  },
+  {
+    titulo: 'Protección y discreción',
+    parrafos: [
+      'Tratamos su información con total discreción y aplicamos medidas de seguridad administrativas, técnicas y físicas para protegerla contra daño, pérdida, alteración o acceso no autorizado.',
+    ],
+  },
+  {
+    titulo: 'Derechos ARCO',
+    parrafos: [
+      'Usted tiene derecho a Acceder, Rectificar, Cancelar u Oponerse al tratamiento de sus datos personales (derechos ARCO), así como a revocar su consentimiento. Para ejercer estos derechos, escríbanos a ' +
+        sitio.correo +
+        '.',
+    ],
+  },
+  {
+    titulo: 'Cambios al aviso',
+    parrafos: [
+      'Este aviso de privacidad puede actualizarse. Cualquier modificación se publicará en este mismo sitio.',
+    ],
+  },
+];
+---
+
+<Layout
+  titulo="Aviso de Privacidad"
+  descripcion={`Aviso de Privacidad de ${sitio.nombre}.`}
+>
+  <section class="bg-verde-profundo text-white">
+    <div class="contenedor py-16 md:py-20">
+      <nav class="mb-6 text-sm text-white/60" aria-label="Ruta de navegación">
+        <a href={ruta()} class="hover:text-dorado">Inicio</a>
+        <span class="mx-2">/</span>
+        <span class="text-white/90">Aviso de Privacidad</span>
+      </nav>
+      <h1 class="font-titulo text-3xl font-bold sm:text-4xl lg:text-5xl">
+        Aviso de Privacidad
+      </h1>
+      <p class="mt-4 text-white/70">Última actualización: 2026</p>
+    </div>
+  </section>
+
+  <section class="bg-white py-16 md:py-20">
+    <div class="contenedor max-w-3xl">
+      <p class="rounded-xl bg-hueso p-5 text-sm text-tinta/70">
+        <strong class="text-verde">Nota:</strong> este es un texto base de ejemplo.
+        Revíselo con su área legal y ajústelo a sus datos y finalidades reales antes
+        de publicarlo.
+      </p>
+
+      <div class="mt-10 space-y-10">
+        {
+          secciones.map((s) => (
+            <div>
+              <h2 class="font-titulo text-xl font-bold text-verde-profundo">
+                {s.titulo}
+              </h2>
+              <span class="linea-dorada mt-3" />
+              <div class="mt-4 space-y-4 leading-relaxed text-tinta/80">
+                {s.parrafos.map((p) => (
+                  <p>{p}</p>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>

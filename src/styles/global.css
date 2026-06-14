@@ -1,0 +1,76 @@
+/* ───────────────────────────────────────────────────────────────────────────
+   ESTILOS GLOBALES — GRUPO SHEFA
+   Aquí se cargan las fuentes de marca y se definen estilos base del sitio.
+   La mayoría del diseño se hace con clases de Tailwind dentro de cada página.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* Fuentes de marca (Google Fonts): Montserrat para títulos, Inter para texto. */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+/* Directivas de Tailwind: no las borres, hacen funcionar todas las utilidades. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Ajustes base del documento ─────────────────────────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Compensa la altura del encabezado fijo al saltar a una sección con #ancla. */
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    @apply font-texto text-tinta bg-white antialiased;
+  }
+
+  /* Por defecto, todos los títulos usan Montserrat. */
+  h1, h2, h3, h4 {
+    @apply font-titulo;
+  }
+
+  /* Foco visible y accesible al navegar con teclado. */
+  :focus-visible {
+    outline: 2px solid theme('colors.dorado');
+    outline-offset: 3px;
+  }
+}
+
+/* ── Componentes reutilizables de marca ─────────────────────────────────── */
+@layer components {
+  /* Contenedor estándar centrado con respiración lateral. */
+  .contenedor {
+    @apply mx-auto max-w-contenido px-6 md:px-8;
+  }
+
+  /* Botón principal (verde). Acción más común. */
+  .boton {
+    @apply inline-flex items-center justify-center gap-2 rounded-full
+           bg-verde px-7 py-3.5 font-titulo text-base font-semibold text-white
+           transition-colors duration-200 hover:bg-verde-profundo
+           focus-visible:outline-offset-4;
+  }
+
+  /* Botón destacado (dorado). Úsalo poco, para la acción que más quieres resaltar. */
+  .boton-dorado {
+    @apply inline-flex items-center justify-center gap-2 rounded-full
+           bg-dorado px-7 py-3.5 font-titulo text-base font-semibold text-verde-profundo
+           transition-all duration-200 hover:brightness-105 hover:shadow-lg;
+  }
+
+  /* Botón secundario (contorno), para fondos claros u oscuros. */
+  .boton-contorno {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border
+           px-7 py-3.5 font-titulo text-base font-semibold transition-colors duration-200;
+  }
+
+  /* Etiqueta pequeña en mayúsculas (estilo del brand book). */
+  .etiqueta {
+    @apply font-titulo text-sm font-semibold uppercase tracking-[0.18em] text-dorado;
+  }
+
+  /* Línea dorada corta que acompaña a los títulos de sección. */
+  .linea-dorada {
+    @apply block h-1 w-14 rounded-full bg-dorado;
+  }
+}

@@ -1,0 +1,330 @@
+---
+// ─────────────────────────────────────────────────────────────────────────────
+//  PÁGINA PRINCIPAL (HOME) — GRUPO SHEFA
+//  Una sola página con scroll y estas secciones:
+//  Hero · Quiénes somos · Servicios · Por qué Shefa · Contacto.
+// ─────────────────────────────────────────────────────────────────────────────
+
+import Layout from '../layouts/Layout.astro';
+import LogoMarca from '../components/LogoMarca.astro';
+import Icono from '../components/Icono.astro';
+import TarjetaServicio from '../components/TarjetaServicio.astro';
+import FormularioContacto from '../components/FormularioContacto.astro';
+import { sitio, enlaceWhatsapp } from '../data/sitio.js';
+import { categorias, serviciosPorCategoria } from '../data/servicios.js';
+
+// Los tres pilares de la marca (del manual de marca).
+const pilares = [
+  {
+    titulo: 'Legalidad',
+    texto: 'Todo dentro de la ley, sin atajos riesgosos. Cada decisión queda bien sustentada.',
+    icono: 'escudo',
+  },
+  {
+    titulo: 'Optimización',
+    texto: 'Aprovechamos cada beneficio fiscal que la ley permite, para que conserve más de lo que genera.',
+    icono: 'estrategia',
+  },
+  {
+    titulo: 'Tranquilidad',
+    texto: 'Usted duerme tranquilo sabiendo que todo está en orden y al corriente.',
+    icono: 'atencion',
+  },
+];
+
+// Las razones de "Por qué Shefa".
+const razones = [
+  {
+    titulo: 'Cumplimiento, sin sustos',
+    texto: 'Mantenemos su empresa en regla y al día. Crezca sin miedo al SAT, porque todo está bien hecho.',
+    icono: 'cumplimiento',
+  },
+  {
+    titulo: 'Ahorro legal e inteligente',
+    texto: 'Optimizamos legalmente su carga fiscal: paga lo justo, ni un peso de más, dentro de la ley.',
+    icono: 'ahorro',
+  },
+  {
+    titulo: 'Atención cercana',
+    texto: 'Le explicamos lo complejo en simple y lo acompañamos de cerca. Trato humano, sin tecnicismos.',
+    icono: 'atencion',
+  },
+  {
+    titulo: 'Todo en un solo lugar',
+    texto: 'Fiscal, contable, jurídico, nómina y financiero bajo un mismo techo, coordinado y sin vueltas.',
+    icono: 'integral',
+  },
+];
+---
+
+<Layout
+  titulo="Despacho fiscal, contable y jurídico"
+  descripcion={sitio.descripcion}
+>
+  <!-- ════════════════════════════════════════════════════════════════════
+       1. HERO
+       ════════════════════════════════════════════════════════════════════ -->
+  <section class="relative overflow-hidden bg-verde-profundo text-white">
+    <!-- Detalle decorativo sutil de fondo -->
+    <div
+      class="pointer-events-none absolute inset-0 opacity-[0.07]"
+      style="background-image: radial-gradient(circle at 80% 20%, #C7A765 0, transparent 45%), radial-gradient(circle at 10% 90%, #0F5C46 0, transparent 40%);"
+      aria-hidden="true"
+    >
+    </div>
+
+    <div class="contenedor relative grid items-center gap-12 py-20 md:py-28 lg:grid-cols-[1.15fr_0.85fr]">
+      <!-- Texto -->
+      <div>
+        <p class="etiqueta">{sitio.promesa}</p>
+        <h1 class="mt-5 font-titulo text-4xl font-bold leading-[1.1] sm:text-5xl lg:text-6xl">
+          Crezca con orden.<br />
+          Prospere con <span class="text-dorado">tranquilidad.</span>
+        </h1>
+        <p class="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
+          En Grupo Shefa ordenamos sus finanzas y aprovechamos de forma legal lo que
+          México permite, para que su empresa crezca sin miedo al SAT. Porque cuando
+          todo está bien hecho, la prosperidad llega sola.
+        </p>
+
+        <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+          <a href="#servicios" class="boton-dorado">Conozca nuestros servicios</a>
+          <a
+            href="#contacto"
+            class="boton-contorno border-white/40 text-white hover:bg-white/10"
+          >
+            Agende una consulta
+          </a>
+        </div>
+
+        <!-- Pilares en una línea -->
+        <div class="mt-12 flex flex-wrap gap-x-8 gap-y-3 text-sm text-white/70">
+          {
+            pilares.map((p) => (
+              <span class="flex items-center gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-dorado"></span>
+                {p.titulo}
+              </span>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Insignia de marca -->
+      <div class="flex justify-center lg:justify-end">
+        <div
+          class="flex w-full max-w-sm flex-col items-center rounded-3xl border border-white/10 bg-white/[0.04] px-10 py-14 text-center backdrop-blur-sm"
+        >
+          <LogoMarca class="h-24 w-24 text-white" />
+          <p class="mt-6 font-titulo text-2xl font-bold tracking-[0.15em]">
+            GRUPO SHEFA
+          </p>
+          <span class="linea-dorada mx-auto mt-5"></span>
+          <p class="mt-5 font-titulo text-dorado">{sitio.tagline}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════════
+       2. QUIÉNES SOMOS
+       ════════════════════════════════════════════════════════════════════ -->
+  <section id="quienes-somos" class="bg-white py-20 md:py-28">
+    <div class="contenedor">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="etiqueta">Quiénes somos</p>
+        <span class="linea-dorada mx-auto mt-4"></span>
+        <h2 class="mt-6 font-titulo text-3xl font-bold text-verde-profundo sm:text-4xl">
+          Un despacho que piensa en su prosperidad
+        </h2>
+        <p class="mt-5 text-lg leading-relaxed text-tinta/70">
+          Shefa significa <strong class="text-verde">«abundancia que fluye»</strong>.
+          Somos un despacho fiscal, contable, jurídico y financiero que ayuda a las
+          empresas a ordenar sus finanzas y a aprovechar, de forma legal e inteligente,
+          lo que México permite. Cuando una empresa hace las cosas bien y dentro de la
+          ley, la prosperidad llega de forma natural y constante. No es suerte, es orden.
+        </p>
+      </div>
+
+      <!-- Los tres pilares -->
+      <div class="mt-16 grid gap-6 md:grid-cols-3">
+        {
+          pilares.map((p) => (
+            <div class="rounded-2xl bg-hueso p-8">
+              <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-verde text-dorado">
+                <Icono nombre={p.icono} class="h-6 w-6" />
+              </span>
+              <h3 class="mt-5 font-titulo text-xl font-semibold text-verde-profundo">
+                {p.titulo}
+              </h3>
+              <p class="mt-2 leading-relaxed text-tinta/70">{p.texto}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════════
+       3. SERVICIOS
+       ════════════════════════════════════════════════════════════════════ -->
+  <section id="servicios" class="bg-hueso py-20 md:py-28">
+    <div class="contenedor">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="etiqueta">Nuestros servicios</p>
+        <span class="linea-dorada mx-auto mt-4"></span>
+        <h2 class="mt-6 font-titulo text-3xl font-bold text-verde-profundo sm:text-4xl">
+          Todo lo que su empresa necesita, en un solo lugar
+        </h2>
+        <p class="mt-5 text-lg leading-relaxed text-tinta/70">
+          Cuatro áreas que trabajan coordinadas para que su empresa esté en orden,
+          bien protegida y lista para crecer.
+        </p>
+      </div>
+
+      <!-- Cada categoría con sus servicios -->
+      <div class="mt-16 space-y-16">
+        {
+          categorias.map((cat) => (
+            <div>
+              <div class="mb-7 flex items-center gap-4">
+                <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-verde text-dorado">
+                  <Icono nombre={cat.icono} class="h-6 w-6" />
+                </span>
+                <div>
+                  <h3 class="font-titulo text-2xl font-bold text-verde-profundo">
+                    {cat.titulo}
+                  </h3>
+                  <p class="text-sm text-tinta/60">{cat.resumen}</p>
+                </div>
+              </div>
+              <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                {serviciosPorCategoria(cat.id).map((s) => (
+                  <TarjetaServicio
+                    slug={s.slug}
+                    titulo={s.titulo}
+                    resumen={s.resumen}
+                    icono={s.icono}
+                  />
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════════
+       4. POR QUÉ SHEFA
+       ════════════════════════════════════════════════════════════════════ -->
+  <section id="por-que-shefa" class="bg-verde-profundo py-20 text-white md:py-28">
+    <div class="contenedor">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="etiqueta">Por qué Shefa</p>
+        <span class="linea-dorada mx-auto mt-4"></span>
+        <h2 class="mt-6 font-titulo text-3xl font-bold sm:text-4xl">
+          La tranquilidad de saber que todo está bien hecho
+        </h2>
+        <p class="mt-5 text-lg leading-relaxed text-white/75">
+          No solo llevamos sus números: pensamos en cómo su empresa puede estar mejor.
+        </p>
+      </div>
+
+      <div class="mt-16 grid gap-6 sm:grid-cols-2">
+        {
+          razones.map((r) => (
+            <div class="flex gap-5 rounded-2xl border border-white/10 bg-white/[0.04] p-7">
+              <span class="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-dorado text-verde-profundo">
+                <Icono nombre={r.icono} class="h-6 w-6" />
+              </span>
+              <div>
+                <h3 class="font-titulo text-xl font-semibold">{r.titulo}</h3>
+                <p class="mt-2 leading-relaxed text-white/75">{r.texto}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Llamado a la acción -->
+      <div class="mt-14 flex flex-col items-center gap-4 text-center">
+        <p class="font-titulo text-2xl text-dorado">{sitio.tagline}</p>
+        <a href="#contacto" class="boton-dorado">Agende una consulta</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════════
+       5. CONTACTO
+       ════════════════════════════════════════════════════════════════════ -->
+  <section id="contacto" class="bg-white py-20 md:py-28">
+    <div class="contenedor">
+      <div class="grid gap-14 lg:grid-cols-[0.9fr_1.1fr]">
+        <!-- Datos de contacto -->
+        <div>
+          <p class="etiqueta">Contacto</p>
+          <span class="linea-dorada mt-4"></span>
+          <h2 class="mt-6 font-titulo text-3xl font-bold text-verde-profundo sm:text-4xl">
+            Hablemos de su empresa
+          </h2>
+          <p class="mt-5 text-lg leading-relaxed text-tinta/70">
+            Cuéntenos su situación y con gusto lo orientamos. La primera conversación
+            es para escucharlo y entender cómo podemos ayudarle a estar en orden.
+          </p>
+
+          <ul class="mt-9 space-y-5">
+            <li class="flex items-center gap-4">
+              <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-hueso text-verde">
+                <Icono nombre="documento" class="h-5 w-5" />
+              </span>
+              <div>
+                <p class="text-sm text-tinta/50">Correo</p>
+                <a href={`mailto:${sitio.correo}`} class="font-titulo font-medium text-tinta hover:text-verde">
+                  {sitio.correo}
+                </a>
+              </div>
+            </li>
+            <li class="flex items-center gap-4">
+              <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-hueso text-verde">
+                <Icono nombre="atencion" class="h-5 w-5" />
+              </span>
+              <div>
+                <p class="text-sm text-tinta/50">Teléfono</p>
+                <a href={`tel:${sitio.telefonoEnlace}`} class="font-titulo font-medium text-tinta hover:text-verde">
+                  {sitio.telefono}
+                </a>
+              </div>
+            </li>
+            <li class="flex items-center gap-4">
+              <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-hueso text-verde">
+                <Icono nombre="edificio" class="h-5 w-5" />
+              </span>
+              <div>
+                <p class="text-sm text-tinta/50">Ubicación</p>
+                <p class="font-titulo font-medium text-tinta">{sitio.direccion}</p>
+              </div>
+            </li>
+          </ul>
+
+          <a
+            href={enlaceWhatsapp}
+            target="_blank"
+            rel="noopener"
+            class="mt-9 inline-flex items-center gap-2 font-titulo font-semibold text-verde hover:text-dorado"
+          >
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.515 5.26l-.999 3.648 3.973-1.207zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.612-.916-2.207-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+            </svg>
+            Escríbanos por WhatsApp
+          </a>
+        </div>
+
+        <!-- Formulario -->
+        <div class="rounded-2xl border border-black/5 bg-hueso/50 p-7 sm:p-9">
+          <FormularioContacto />
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
