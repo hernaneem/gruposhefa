@@ -6,14 +6,10 @@ import sitemap from '@astrojs/sitemap';
 // Configuración de Astro.
 //
 // 'site'  = la dirección pública del sitio (se usa para SEO y el mapa del sitio).
-// 'base'  = la subcarpeta donde se publica. GitHub Pages publica en
-//           /NOMBRE-DEL-REPOSITORIO/, por eso aquí va '/gruposhefa/'.
-//
-// 👉 Cuando conectes tu dominio propio (gruposhefa.com), cambia:
-//      site: 'https://gruposhefa.com'   y   base: '/'
-//    y vuelve a publicar.
+// 'base'  = la subcarpeta donde se publica. Como el sitio usa el dominio propio
+//           gruposhefa.com, se publica en la raíz '/'.
 export default defineConfig({
-  site: 'https://ECHEVERRIA-USUARIO.github.io',
-  base: '/gruposhefa/',
+  site: 'https://gruposhefa.com',
+  base: '/',
   integrations: [tailwind(), sitemap()],
 });
