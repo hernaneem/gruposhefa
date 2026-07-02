@@ -13,7 +13,7 @@ export const sitio = {
   promesa: 'Prosperidad con cumplimiento',
   tagline: 'Su prosperidad, en orden.',
   descripcion:
-    'Despacho fiscal, contable, jurídico y financiero en México. Ordenamos sus finanzas y aprovechamos de forma legal lo que México permite, para que su empresa prospere con tranquilidad.',
+    'Despacho de servicios profesionales fiscales, contables, jurídicos y financieros en México. Damos cumplimiento a las obligaciones de su empresa con rigor técnico y la acompañamos con planeación conforme a la ley, para que opere con orden y certeza.',
 
   // ── Datos de contacto (PROVISIONALES — reemplazar) ──────────────────────
   correo: 'contacto@gruposhefa.com',
