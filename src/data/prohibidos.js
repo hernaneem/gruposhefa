@@ -22,6 +22,8 @@ export const NOMBRES_PROHIBIDOS = [
   'Soluciones Empresariales Elite',
   'Personal para IT',
   'Contenido Fuerza y Medios',
+  'BAFF Laboratories',
+  'BAFF',
 ];
 
 // Bancos del catálogo interno, y la palabra "CLABE" en sí. Esto SÍ puede vivir

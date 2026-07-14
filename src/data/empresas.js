@@ -166,6 +166,28 @@ export const empresas = [
     ],
   },
   {
+    slug: 'baff-laboratories',
+    titulo: 'Servicios de abastecimiento y compras',
+    etiqueta: 'Abastecimiento y compras',
+    resumen:
+      'Buscamos, negociamos y compramos lo que su operación necesita, y respondemos por la entrega, para que su equipo no dedique su tiempo a cotizar.',
+    icono: 'caja',
+    descripcion: [
+      'Comprar bien consume tiempo: localizar proveedores confiables, comparar cotizaciones, negociar condiciones y dar seguimiento hasta que lo pedido llega. Nos hacemos cargo de ese proceso completo, sea cual sea el insumo, el material o el equipo que su operación requiera.',
+      'Compramos a nombre propio y en volumen, lo que permite obtener condiciones que una compra aislada difícilmente alcanza. Usted nos indica qué necesita; nosotros lo cotizamos, lo negociamos, lo adquirimos y respondemos por su entrega.',
+    ],
+    ofrece: [
+      'Búsqueda y selección de proveedores',
+      'Cotización comparativa y análisis de precios',
+      'Negociación de precios y condiciones de compra',
+      'Compra de insumos, materiales y consumibles',
+      'Compra de productos y equipo especializado',
+      'Consolidación de pedidos y compra por volumen',
+      'Gestión y seguimiento de pedidos',
+      'Entrega y logística',
+    ],
+  },
+  {
     slug: 'soluciones-empresariales-elite',
     titulo: 'Consultoría empresarial y estratégica',
     etiqueta: 'Consultoría y estrategia',
