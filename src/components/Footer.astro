@@ -6,7 +6,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import LogoMarca from './LogoMarca.astro';
-import { sitio } from '../data/sitio.js';
+import { sitio, hayTelefono } from '../data/sitio.js';
 import { categorias } from '../data/servicios.js';
 import { ruta } from '../lib/rutas.ts';
 
@@ -75,11 +75,18 @@ const enlaces = [
               {sitio.correo}
             </a>
           </li>
-          <li>
-            <a href={`tel:${sitio.telefonoEnlace}`} class="transition-colors hover:text-dorado">
-              {sitio.telefono}
-            </a>
-          </li>
+          {
+            /* El teléfono solo se muestra cuando hay uno real cargado en
+               src/data/sitio.js — mientras esté vacío, se omite este <li>
+               sin dejar hueco en la columna. */
+            hayTelefono && (
+              <li>
+                <a href={`tel:${sitio.telefonoEnlace}`} class="transition-colors hover:text-dorado">
+                  {sitio.telefono}
+                </a>
+              </li>
+            )
+          }
           <li>{sitio.direccion}</li>
         </ul>
       </div>

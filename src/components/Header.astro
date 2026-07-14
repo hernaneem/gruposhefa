@@ -5,7 +5,7 @@
 //  En celular, los enlaces se ocultan tras un botón de menú (☰).
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { enlaceWhatsapp } from '../data/sitio.js';
+import { enlaceWhatsapp, hayWhatsapp } from '../data/sitio.js';
 import { ruta } from '../lib/rutas.ts';
 
 // Enlaces del menú. Como el home es de una sola página, apuntan a sus secciones
@@ -16,6 +16,12 @@ const enlaces = [
   { texto: 'Por qué Shefa', destino: ruta('#por-que-shefa') },
   { texto: 'Contacto', destino: ruta('#contacto') },
 ];
+
+// El botón "Agende una consulta" del menú móvil manda directo a WhatsApp
+// cuando hay uno configurado; si no, cae en la sección de contacto (igual
+// que el botón equivalente del menú de escritorio), para no ofrecer nunca
+// un enlace de WhatsApp roto.
+const destinoAgendar = hayWhatsapp ? enlaceWhatsapp : ruta('#contacto');
 ---
 
 <header
@@ -83,7 +89,12 @@ const enlaces = [
           </a>
         ))
       }
-      <a href={enlaceWhatsapp} target="_blank" rel="noopener" class="boton-dorado mt-4">
+      <a
+        href={destinoAgendar}
+        target={hayWhatsapp ? '_blank' : undefined}
+        rel={hayWhatsapp ? 'noopener' : undefined}
+        class="boton-dorado mt-4"
+      >
         Agende una consulta
       </a>
     </div>

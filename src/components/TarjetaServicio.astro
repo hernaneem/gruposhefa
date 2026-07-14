@@ -8,16 +8,21 @@ import Icono from './Icono.astro';
 import { ruta } from '../lib/rutas.ts';
 
 interface Props {
-  slug: string;
+  // Destino del enlace. Si no se pasa, se arma con el slug apuntando a
+  // /servicios/<slug>, que es como la usan el inicio y las páginas de servicio.
+  href?: string;
+  slug?: string;
   titulo: string;
   resumen: string;
   icono: string;
 }
-const { slug, titulo, resumen, icono } = Astro.props;
+const { href, slug, titulo, resumen, icono } = Astro.props;
+
+const destino = href ?? ruta(`servicios/${slug}`);
 ---
 
 <a
-  href={ruta(`servicios/${slug}`)}
+  href={destino}
   class="group flex h-full flex-col rounded-2xl border border-black/5 bg-white p-7 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-dorado/40 hover:shadow-md"
 >
   <span

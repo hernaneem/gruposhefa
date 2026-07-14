@@ -1,87 +1,79 @@
 ---
 // ─────────────────────────────────────────────────────────────────────────────
-//  PÁGINA INDIVIDUAL DE SERVICIO — GRUPO SHEFA
-//  Astro genera AUTOMÁTICAMENTE una página por cada servicio del catálogo
-//  (src/data/servicios.js). No hay que crear un archivo por servicio.
+//  LANDING DE EMPRESA — GRUPO SHEFA
+//  Astro genera AUTOMÁTICAMENTE una página por cada empresa del catálogo
+//  (src/data/empresas.js). No hay que crear un archivo por empresa.
+//
+//  Ojo: la página se presenta por los SERVICIOS que ofrece, nunca por la razón
+//  social. El nombre de la empresa vive solo en la URL.
 // ─────────────────────────────────────────────────────────────────────────────
 
-import Layout from '../../layouts/Layout.astro';
-import Icono from '../../components/Icono.astro';
-import TarjetaServicio from '../../components/TarjetaServicio.astro';
-import { enlaceWhatsapp, hayWhatsapp } from '../../data/sitio.js';
-import { ruta } from '../../lib/rutas.ts';
-import {
-  servicios,
-  serviciosPorCategoria,
-  nombreCategoria,
-} from '../../data/servicios.js';
+import Layout from '../layouts/Layout.astro';
+import Icono from '../components/Icono.astro';
+import TarjetaServicio from '../components/TarjetaServicio.astro';
+import { enlaceWhatsapp, hayWhatsapp } from '../data/sitio.js';
+import { ruta } from '../lib/rutas.ts';
+import { empresas, otrasEmpresas } from '../data/empresas.js';
 
-// Le dice a Astro qué páginas generar: una por cada servicio.
+// Le dice a Astro qué páginas generar: una por cada empresa.
 export function getStaticPaths() {
-  return servicios.map((servicio) => ({
-    params: { slug: servicio.slug },
-    props: { servicio },
+  return empresas.map((empresa) => ({
+    params: { empresa: empresa.slug },
+    props: { empresa },
   }));
 }
 
-const { servicio } = Astro.props;
+const { empresa } = Astro.props;
 
-// Otros servicios de la misma categoría (para sugerir al final).
-const relacionados = serviciosPorCategoria(servicio.categoria)
-  .filter((s) => s.slug !== servicio.slug)
-  .slice(0, 3);
-
-const categoria = nombreCategoria(servicio.categoria);
+// Las otras áreas del grupo, para sugerir al final.
+const otras = otrasEmpresas(empresa.slug);
 ---
 
-<Layout titulo={servicio.titulo} descripcion={servicio.resumen}>
-  <!-- Encabezado del servicio -->
+<Layout titulo={empresa.titulo} descripcion={empresa.resumen}>
+  <!-- Encabezado -->
   <section class="bg-verde-profundo text-white">
     <div class="contenedor py-16 md:py-20">
       <!-- Migas de pan -->
       <nav class="mb-8 text-sm text-white/60" aria-label="Ruta de navegación">
         <a href={ruta()} class="hover:text-dorado">Inicio</a>
         <span class="mx-2">/</span>
-        <a href={ruta('#servicios')} class="hover:text-dorado">Servicios</a>
-        <span class="mx-2">/</span>
-        <span class="text-white/90">{servicio.titulo}</span>
+        <span class="text-white/90">{empresa.etiqueta}</span>
       </nav>
 
       <div class="flex items-start gap-5">
         <span class="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-dorado text-verde-profundo">
-          <Icono nombre={servicio.icono} class="h-7 w-7" />
+          <Icono nombre={empresa.icono} class="h-7 w-7" />
         </span>
         <div>
-          <p class="etiqueta">{categoria}</p>
+          <p class="etiqueta">{empresa.etiqueta}</p>
           <h1 class="mt-3 font-titulo text-3xl font-bold sm:text-4xl lg:text-5xl">
-            {servicio.titulo}
+            {empresa.titulo}
           </h1>
         </div>
       </div>
       <p class="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
-        {servicio.resumen}
+        {empresa.resumen}
       </p>
     </div>
   </section>
 
-  <!-- Cuerpo del servicio -->
+  <!-- Cuerpo -->
   <section class="bg-white py-16 md:py-20">
     <div class="contenedor grid gap-12 lg:grid-cols-[1.4fr_0.6fr]">
-      <!-- Descripción -->
       <div>
         <div class="space-y-5 text-lg leading-relaxed text-tinta/80">
-          {servicio.descripcion.map((parrafo) => <p>{parrafo}</p>)}
+          {empresa.descripcion.map((parrafo) => <p>{parrafo}</p>)}
         </div>
 
-        <!-- Qué incluye -->
+        <!-- Qué ofrecemos -->
         <div class="mt-12">
           <h2 class="font-titulo text-2xl font-bold text-verde-profundo">
-            ¿Qué incluye?
+            ¿Qué ofrecemos?
           </h2>
           <span class="linea-dorada mt-4"></span>
           <ul class="mt-7 grid gap-4 sm:grid-cols-2">
             {
-              servicio.incluye.map((punto) => (
+              empresa.ofrece.map((punto) => (
                 <li class="flex items-start gap-3">
                   <span class="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-hueso text-verde">
                     <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -96,12 +88,12 @@ const categoria = nombreCategoria(servicio.categoria);
         </div>
       </div>
 
-      <!-- Tarjeta de llamado a la acción -->
+      <!-- Llamado a la acción -->
       <aside class="lg:pt-2">
         <div class="rounded-2xl bg-verde-profundo p-8 text-white">
-          <h2 class="font-titulo text-xl font-bold">¿Le interesa este servicio?</h2>
+          <h2 class="font-titulo text-xl font-bold">¿Le interesan estos servicios?</h2>
           <p class="mt-3 leading-relaxed text-white/75">
-            Cuéntenos su situación y con gusto lo orientamos, sin compromiso.
+            Cuéntenos qué necesita y con gusto lo orientamos, sin compromiso.
           </p>
           <a href={ruta('#contacto')} class="boton-dorado mt-6 w-full">Agende una consulta</a>
           {
@@ -123,27 +115,25 @@ const categoria = nombreCategoria(servicio.categoria);
     </div>
   </section>
 
-  <!-- Servicios relacionados -->
-  {
-    relacionados.length > 0 && (
-      <section class="bg-hueso py-16 md:py-20">
-        <div class="contenedor">
-          <h2 class="font-titulo text-2xl font-bold text-verde-profundo">
-            Otros servicios de {categoria}
-          </h2>
-          <span class="linea-dorada mt-4" />
-          <div class="mt-9 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {relacionados.map((s) => (
-              <TarjetaServicio
-                slug={s.slug}
-                titulo={s.titulo}
-                resumen={s.resumen}
-                icono={s.icono}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-    )
-  }
+  <!-- Otras áreas del grupo -->
+  <section class="bg-hueso py-16 md:py-20">
+    <div class="contenedor">
+      <h2 class="font-titulo text-2xl font-bold text-verde-profundo">
+        Otras áreas del grupo
+      </h2>
+      <span class="linea-dorada mt-4"></span>
+      <div class="mt-9 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          otras.map((otra) => (
+            <TarjetaServicio
+              href={ruta(otra.slug)}
+              titulo={otra.titulo}
+              resumen={otra.resumen}
+              icono={otra.icono}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
 </Layout>

@@ -9,7 +9,7 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import BotonWhatsapp from '../components/BotonWhatsapp.astro';
-import { sitio } from '../data/sitio.js';
+import { sitio, hayTelefono } from '../data/sitio.js';
 import { ruta } from '../lib/rutas.ts';
 
 interface Props {
@@ -29,6 +29,25 @@ const tituloCompleto = `${titulo} · ${sitio.nombre}`;
 const origen = Astro.site ?? new URL(sitio.url);
 const urlCanonica = new URL(Astro.url.pathname, origen).href;
 const urlImagen = new URL(ruta('logo-shefa.png'), origen).href;
+
+// Datos estructurados para buscadores. Un "telephone" vacío es peor que no
+// ponerlo, así que la propiedad solo se agrega cuando hay un teléfono real
+// configurado en src/data/sitio.js.
+const datosEstructurados = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: sitio.nombre,
+  description: sitio.descripcion,
+  url: sitio.url,
+  email: sitio.correo,
+  ...(hayTelefono ? { telephone: sitio.telefono } : {}),
+  areaServed: 'MX',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: sitio.direccion,
+    addressCountry: 'MX',
+  },
+};
 ---
 
 <!doctype html>
@@ -58,24 +77,7 @@ const urlImagen = new URL(ruta('logo-shefa.png'), origen).href;
     <meta name="twitter:card" content="summary" />
 
     <!-- Datos estructurados para buscadores (negocio profesional) -->
-    <script
-      type="application/ld+json"
-      set:html={JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'ProfessionalService',
-        name: sitio.nombre,
-        description: sitio.descripcion,
-        url: sitio.url,
-        email: sitio.correo,
-        telephone: sitio.telefono,
-        areaServed: 'MX',
-        address: {
-          '@type': 'PostalAddress',
-          addressLocality: sitio.direccion,
-          addressCountry: 'MX',
-        },
-      })}
-    />
+    <script type="application/ld+json" set:html={JSON.stringify(datosEstructurados)} />
   </head>
 
   <body class="flex min-h-screen flex-col">
