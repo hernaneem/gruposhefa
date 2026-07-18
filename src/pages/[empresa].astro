@@ -31,7 +31,7 @@ const otras = otrasEmpresas(empresa.slug);
 
 <Layout titulo={empresa.titulo} descripcion={empresa.resumen}>
   <!-- Encabezado -->
-  <section class="bg-verde-profundo text-white">
+  <section class="bg-gradient-to-br from-noche via-azul-profundo to-noche text-white">
     <div class="contenedor py-16 md:py-20">
       <!-- Migas de pan -->
       <nav class="mb-8 text-sm text-white/60" aria-label="Ruta de navegación">
@@ -41,11 +41,11 @@ const otras = otrasEmpresas(empresa.slug);
       </nav>
 
       <div class="flex items-start gap-5">
-        <span class="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-dorado text-verde-profundo">
+        <span class="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-dorado text-noche">
           <Icono nombre={empresa.icono} class="h-7 w-7" />
         </span>
         <div>
-          <p class="etiqueta">{empresa.etiqueta}</p>
+          <p class="etiqueta text-dorado">{empresa.etiqueta}</p>
           <h1 class="mt-3 font-titulo text-3xl font-bold sm:text-4xl lg:text-5xl">
             {empresa.titulo}
           </h1>
@@ -67,7 +67,7 @@ const otras = otrasEmpresas(empresa.slug);
 
         <!-- Qué ofrecemos -->
         <div class="mt-12">
-          <h2 class="font-titulo text-2xl font-bold text-verde-profundo">
+          <h2 class="font-titulo text-2xl font-bold text-azul-profundo">
             ¿Qué ofrecemos?
           </h2>
           <span class="linea-dorada mt-4"></span>
@@ -75,7 +75,7 @@ const otras = otrasEmpresas(empresa.slug);
             {
               empresa.ofrece.map((punto) => (
                 <li class="flex items-start gap-3">
-                  <span class="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-hueso text-verde">
+                  <span class="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-niebla text-azul">
                     <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                       <polyline points="20 6 9 17 4 12" />
                     </svg>
@@ -90,7 +90,7 @@ const otras = otrasEmpresas(empresa.slug);
 
       <!-- Llamado a la acción -->
       <aside class="lg:pt-2">
-        <div class="rounded-2xl bg-verde-profundo p-8 text-white">
+        <div class="rounded-2xl bg-noche p-8 text-white">
           <h2 class="font-titulo text-xl font-bold">¿Le interesan estos servicios?</h2>
           <p class="mt-3 leading-relaxed text-white/75">
             Cuéntenos qué necesita y con gusto lo orientamos, sin compromiso.
@@ -116,9 +116,9 @@ const otras = otrasEmpresas(empresa.slug);
   </section>
 
   <!-- Otras áreas del grupo -->
-  <section class="bg-hueso py-16 md:py-20">
+  <section class="bg-niebla py-16 md:py-20">
     <div class="contenedor">
-      <h2 class="font-titulo text-2xl font-bold text-verde-profundo">
+      <h2 class="font-titulo text-2xl font-bold text-azul-profundo">
         Otras áreas del grupo
       </h2>
       <span class="linea-dorada mt-4"></span>

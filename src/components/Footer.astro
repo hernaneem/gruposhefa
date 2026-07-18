@@ -1,7 +1,7 @@
 ---
 // ─────────────────────────────────────────────────────────────────────────────
 //  PIE DE PÁGINA — GRUPO SHEFA
-//  Fondo verde profundo, con logo, navegación, datos de contacto y el enlace
+//  Fondo azul noche, con logo, navegación, datos de contacto y el enlace
 //  al Aviso de Privacidad.
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -20,7 +20,7 @@ const enlaces = [
 ];
 ---
 
-<footer class="bg-verde-profundo text-white">
+<footer class="bg-noche text-white">
   <div class="contenedor py-16">
     <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]">
       <!-- Marca -->
@@ -39,7 +39,7 @@ const enlaces = [
 
       <!-- Navegación -->
       <nav aria-label="Enlaces del sitio">
-        <h2 class="etiqueta mb-4">Navegación</h2>
+        <h2 class="etiqueta mb-4 text-dorado">Navegación</h2>
         <ul class="space-y-3 text-sm text-white/80">
           {
             enlaces.map((e) => (
@@ -52,7 +52,7 @@ const enlaces = [
           }
         </ul>
 
-        <h2 class="etiqueta mb-4 mt-8">Servicios</h2>
+        <h2 class="etiqueta mb-4 mt-8 text-dorado">Servicios</h2>
         <ul class="space-y-3 text-sm text-white/80">
           {
             categorias.map((c) => (
@@ -68,7 +68,7 @@ const enlaces = [
 
       <!-- Contacto -->
       <div>
-        <h2 class="etiqueta mb-4">Contacto</h2>
+        <h2 class="etiqueta mb-4 text-dorado">Contacto</h2>
         <ul class="space-y-3 text-sm text-white/80">
           <li>
             <a href={`mailto:${sitio.correo}`} class="transition-colors hover:text-dorado">

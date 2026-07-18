@@ -4,8 +4,8 @@
    La mayoría del diseño se hace con clases de Tailwind dentro de cada página.
    ─────────────────────────────────────────────────────────────────────────── */
 
-/* Fuentes de marca (Google Fonts): Montserrat para títulos, Inter para texto. */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+/* Fuentes de marca (Google Fonts): Poppins para títulos, Open Sans para texto. */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Open+Sans:wght@400;500;600&display=swap');
 
 /* Directivas de Tailwind: no las borres, hacen funcionar todas las utilidades. */
 @tailwind base;
@@ -24,14 +24,15 @@
     @apply font-texto text-tinta bg-white antialiased;
   }
 
-  /* Por defecto, todos los títulos usan Montserrat. */
+  /* Por defecto, todos los títulos usan Poppins. */
   h1, h2, h3, h4 {
     @apply font-titulo;
   }
 
-  /* Foco visible y accesible al navegar con teclado. */
+  /* Foco visible y accesible al navegar con teclado (funciona sobre fondos
+     claros y oscuros). */
   :focus-visible {
-    outline: 2px solid theme('colors.dorado');
+    outline: 2px solid theme('colors.celeste');
     outline-offset: 3px;
   }
 }
@@ -43,18 +44,18 @@
     @apply mx-auto max-w-contenido px-6 md:px-8;
   }
 
-  /* Botón principal (verde). Acción más común. */
+  /* Botón principal (azul). Acción más común. */
   .boton {
     @apply inline-flex items-center justify-center gap-2 rounded-full
-           bg-verde px-7 py-3.5 font-titulo text-base font-semibold text-white
-           transition-colors duration-200 hover:bg-verde-profundo
+           bg-azul px-7 py-3.5 font-titulo text-base font-semibold text-white
+           transition-colors duration-200 hover:bg-azul-profundo
            focus-visible:outline-offset-4;
   }
 
   /* Botón destacado (dorado). Úsalo poco, para la acción que más quieres resaltar. */
   .boton-dorado {
     @apply inline-flex items-center justify-center gap-2 rounded-full
-           bg-dorado px-7 py-3.5 font-titulo text-base font-semibold text-verde-profundo
+           bg-dorado px-7 py-3.5 font-titulo text-base font-semibold text-noche
            transition-all duration-200 hover:brightness-105 hover:shadow-lg;
   }
 
@@ -64,9 +65,10 @@
            px-7 py-3.5 font-titulo text-base font-semibold transition-colors duration-200;
   }
 
-  /* Etiqueta pequeña en mayúsculas (estilo del brand book). */
+  /* Etiqueta pequeña en mayúsculas. Azul sobre fondo claro; en secciones
+     oscuras agrégale la clase text-dorado para que resalte. */
   .etiqueta {
-    @apply font-titulo text-sm font-semibold uppercase tracking-[0.18em] text-dorado;
+    @apply font-titulo text-sm font-semibold uppercase tracking-[0.18em] text-azul;
   }
 
   /* Línea dorada corta que acompaña a los títulos de sección. */

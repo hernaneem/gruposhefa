@@ -34,7 +34,7 @@ import { categorias } from '../data/servicios.js';
         name="Nombre"
         required
         autocomplete="name"
-        class="w-full rounded-lg border border-black/10 bg-white px-4 py-3 text-tinta outline-none transition-colors placeholder:text-tinta/40 focus:border-verde"
+        class="w-full rounded-lg border border-black/10 bg-white px-4 py-3 text-tinta outline-none transition-colors placeholder:text-tinta/40 focus:border-azul"
         placeholder="Su nombre"
       />
     </div>
@@ -47,7 +47,7 @@ import { categorias } from '../data/servicios.js';
         id="empresa"
         name="Empresa"
         autocomplete="organization"
-        class="w-full rounded-lg border border-black/10 bg-white px-4 py-3 text-tinta outline-none transition-colors placeholder:text-tinta/40 focus:border-verde"
+        class="w-full rounded-lg border border-black/10 bg-white px-4 py-3 text-tinta outline-none transition-colors placeholder:text-tinta/40 focus:border-azul"
         placeholder="Nombre de su empresa"
       />
     </div>
@@ -64,7 +64,7 @@ import { categorias } from '../data/servicios.js';
         name="Correo"
         required
         autocomplete="email"
-        class="w-full rounded-lg border border-black/10 bg-white px-4 py-3 text-tinta outline-none transition-colors placeholder:text-tinta/40 focus:border-verde"
+        class="w-full rounded-lg border border-black/10 bg-white px-4 py-3 text-tinta outline-none transition-colors placeholder:text-tinta/40 focus:border-azul"
         placeholder="correo@empresa.com"
       />
     </div>
@@ -77,7 +77,7 @@ import { categorias } from '../data/servicios.js';
         id="telefono"
         name="Teléfono"
         autocomplete="tel"
-        class="w-full rounded-lg border border-black/10 bg-white px-4 py-3 text-tinta outline-none transition-colors placeholder:text-tinta/40 focus:border-verde"
+        class="w-full rounded-lg border border-black/10 bg-white px-4 py-3 text-tinta outline-none transition-colors placeholder:text-tinta/40 focus:border-azul"
         placeholder="55 0000 0000"
       />
     </div>
@@ -90,7 +90,7 @@ import { categorias } from '../data/servicios.js';
     <select
       id="servicio"
       name="Servicio de interés"
-      class="w-full rounded-lg border border-black/10 bg-white px-4 py-3 text-tinta outline-none transition-colors focus:border-verde"
+      class="w-full rounded-lg border border-black/10 bg-white px-4 py-3 text-tinta outline-none transition-colors focus:border-azul"
     >
       <option value="">Seleccione un área…</option>
       {categorias.map((c) => <option value={c.titulo}>{c.titulo}</option>)}
@@ -106,7 +106,7 @@ import { categorias } from '../data/servicios.js';
       id="mensaje"
       name="Mensaje"
       rows="4"
-      class="w-full rounded-lg border border-black/10 bg-white px-4 py-3 text-tinta outline-none transition-colors placeholder:text-tinta/40 focus:border-verde"
+      class="w-full rounded-lg border border-black/10 bg-white px-4 py-3 text-tinta outline-none transition-colors placeholder:text-tinta/40 focus:border-azul"
       placeholder="Cuéntenos brevemente su situación y con gusto lo orientamos."
     ></textarea>
   </div>
@@ -115,7 +115,7 @@ import { categorias } from '../data/servicios.js';
 
   <p class="text-xs text-tinta/50">
     Al enviar, acepta nuestro
-    <a href={ruta('aviso-de-privacidad')} class="underline hover:text-verde">Aviso de Privacidad</a>.
+    <a href={ruta('aviso-de-privacidad')} class="underline hover:text-azul">Aviso de Privacidad</a>.
     Sus datos se tratan con total discreción.
   </p>
 </form>

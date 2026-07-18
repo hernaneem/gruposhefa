@@ -56,7 +56,7 @@ const secciones = [
   titulo="Aviso de Privacidad"
   descripcion={`Aviso de Privacidad de ${sitio.nombre}.`}
 >
-  <section class="bg-verde-profundo text-white">
+  <section class="bg-gradient-to-br from-noche via-azul-profundo to-noche text-white">
     <div class="contenedor py-16 md:py-20">
       <nav class="mb-6 text-sm text-white/60" aria-label="Ruta de navegación">
         <a href={ruta()} class="hover:text-dorado">Inicio</a>
@@ -72,8 +72,8 @@ const secciones = [
 
   <section class="bg-white py-16 md:py-20">
     <div class="contenedor max-w-3xl">
-      <p class="rounded-xl bg-hueso p-5 text-sm text-tinta/70">
-        <strong class="text-verde">Nota:</strong> este es un texto base de ejemplo.
+      <p class="rounded-xl bg-niebla p-5 text-sm text-tinta/70">
+        <strong class="text-azul">Nota:</strong> este es un texto base de ejemplo.
         Revíselo con su área legal y ajústelo a sus datos y finalidades reales antes
         de publicarlo.
       </p>
@@ -82,7 +82,7 @@ const secciones = [
         {
           secciones.map((s) => (
             <div>
-              <h2 class="font-titulo text-xl font-bold text-verde-profundo">
+              <h2 class="font-titulo text-xl font-bold text-azul-profundo">
                 {s.titulo}
               </h2>
               <span class="linea-dorada mt-3" />

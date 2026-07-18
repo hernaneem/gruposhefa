@@ -12,23 +12,27 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Verde esmeralda — color principal (logo, títulos, botones).
-        'verde': '#0F5C46',
-        // Verde profundo — fondos de sección oscuros y pie de página.
-        'verde-profundo': '#083930',
-        // Dorado — acento premium (líneas, íconos, botón destacado). Úsalo poco.
+        // Azul corporativo — color de acción (botones, enlaces, íconos).
+        'azul': '#1E40AF',
+        // Azul marino — títulos sobre fondo claro y fondos de sección oscuros.
+        'azul-profundo': '#1E3A8A',
+        // Azul noche — el fondo más oscuro (hero, pie de página).
+        'noche': '#172554',
+        // Celeste — acento secundario para detalles sobre fondos oscuros.
+        'celeste': '#60A5FA',
+        // Dorado — acento premium heredado del logo (líneas, íconos, botón destacado).
         'dorado': '#C7A765',
         // Negro tinta — texto sobre fondos claros.
-        'tinta': '#141414',
-        // Hueso — fondo cálido alternativo, da un toque premium.
-        'hueso': '#F5F3EC',
+        'tinta': '#0F172A',
+        // Niebla — fondo claro alternativo, frío y limpio.
+        'niebla': '#F6F8FB',
         // (El blanco #FFFFFF ya viene incluido en Tailwind como 'white'.)
       },
       fontFamily: {
-        // Montserrat para títulos y encabezados (fuerza y carácter).
-        titulo: ['Montserrat', 'system-ui', 'sans-serif'],
-        // Inter para el cuerpo de texto (claridad y lectura).
-        texto: ['Inter', 'system-ui', 'sans-serif'],
+        // Poppins para títulos y encabezados (moderna y profesional).
+        titulo: ['Poppins', 'system-ui', 'sans-serif'],
+        // Open Sans para el cuerpo de texto (claridad y lectura).
+        texto: ['"Open Sans"', 'system-ui', 'sans-serif'],
       },
       // Ancho máximo del contenido para que las secciones respiren.
       maxWidth: {

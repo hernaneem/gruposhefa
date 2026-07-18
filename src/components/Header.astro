@@ -5,6 +5,7 @@
 //  En celular, los enlaces se ocultan tras un botón de menú (☰).
 // ─────────────────────────────────────────────────────────────────────────────
 
+import LogoMarca from './LogoMarca.astro';
 import { enlaceWhatsapp, hayWhatsapp } from '../data/sitio.js';
 import { ruta } from '../lib/rutas.ts';
 
@@ -28,15 +29,12 @@ const destinoAgendar = hayWhatsapp ? enlaceWhatsapp : ruta('#contacto');
   class="fixed inset-x-0 top-0 z-50 border-b border-black/5 bg-white/90 backdrop-blur-md"
 >
   <div class="contenedor flex h-20 items-center justify-between gap-4">
-    <!-- Logo -->
-    <a href={ruta()} class="flex items-center" aria-label="Grupo Shefa — inicio">
-      <img
-        src={ruta('logo-shefa.png')}
-        alt="Grupo Shefa"
-        class="h-11 w-auto md:h-12"
-        width="260"
-        height="120"
-      />
+    <!-- Logo (isotipo en SVG + nombre, en los colores nuevos de la marca) -->
+    <a href={ruta()} class="flex items-center gap-3" aria-label="Grupo Shefa — inicio">
+      <LogoMarca class="h-10 w-10 text-azul-profundo md:h-11 md:w-11" />
+      <span class="font-titulo text-lg font-bold leading-tight tracking-wide text-azul-profundo">
+        GRUPO<br />SHEFA
+      </span>
     </a>
 
     <!-- Navegación en computadora -->
@@ -45,7 +43,7 @@ const destinoAgendar = hayWhatsapp ? enlaceWhatsapp : ruta('#contacto');
         enlaces.map((e) => (
           <a
             href={e.destino}
-            class="font-titulo text-sm font-medium text-tinta/80 transition-colors hover:text-verde"
+            class="font-titulo text-sm font-medium text-tinta/80 transition-colors hover:text-azul"
           >
             {e.texto}
           </a>
@@ -59,7 +57,7 @@ const destinoAgendar = hayWhatsapp ? enlaceWhatsapp : ruta('#contacto');
     <!-- Botón de menú en celular -->
     <button
       id="boton-menu"
-      class="inline-flex items-center justify-center rounded-md p-2 text-verde lg:hidden"
+      class="inline-flex items-center justify-center rounded-md p-2 text-azul-profundo lg:hidden"
       aria-label="Abrir menú"
       aria-expanded="false"
       aria-controls="menu-movil"
