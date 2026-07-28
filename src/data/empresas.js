@@ -211,10 +211,7 @@ export const empresas = [
   },
 ];
 
-// Las tres empresas que siguen a esta en la lista, dando la vuelta al llegar al
-// final. Se usan al pie de cada landing para invitar a conocer el resto del grupo.
-export function otrasEmpresas(slug) {
-  const indice = empresas.findIndex((empresa) => empresa.slug === slug);
-  if (indice === -1) return empresas.slice(0, 3);
-  return [...empresas.slice(indice + 1), ...empresas.slice(0, indice)].slice(0, 3);
-}
+// Nota: aquí vivía otrasEmpresas(), que sugería tres empresas al pie de cada
+// landing. Se eliminó junto con esa sección: cada landing es individual y no
+// enlaza a las demás. Si alguna vez se quiere volver a enlazarlas entre sí,
+// esta es la lista de la que hay que partir.

@@ -8,7 +8,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { empresas, otrasEmpresas } from '../src/data/empresas.js';
+import { empresas } from '../src/data/empresas.js';
 import { NOMBRES_PROHIBIDOS, DATOS_PROHIBIDOS, PATRONES_PROHIBIDOS } from '../src/data/prohibidos.js';
 
 const CAMPOS_TEXTO = ['slug', 'titulo', 'etiqueta', 'resumen', 'icono'];
@@ -44,25 +44,8 @@ test('los slugs son únicos y válidos para una URL', () => {
   }
 });
 
-test('otrasEmpresas devuelve tres empresas y nunca la propia', () => {
-  for (const empresa of empresas) {
-    const otras = otrasEmpresas(empresa.slug);
-    assert.equal(otras.length, 3, `${empresa.slug}: deben ser 3`);
-    assert.ok(
-      !otras.some((o) => o.slug === empresa.slug),
-      `${empresa.slug}: no puede sugerirse a sí misma`,
-    );
-  }
-});
-
-test('otrasEmpresas da la vuelta al llegar al final de la lista', () => {
-  const ultima = empresas[empresas.length - 1];
-  const otras = otrasEmpresas(ultima.slug);
-  assert.deepEqual(
-    otras.map((o) => o.slug),
-    empresas.slice(0, 3).map((e) => e.slug),
-  );
-});
+// Las pruebas de otrasEmpresas() se quitaron junto con esa función: las
+// landings por empresa ya no se enlazan entre sí.
 
 // ── La regla que no se puede romper ──────────────────────────────────────────
 // La lista vive en src/data/prohibidos.js, compartida con el verificador.

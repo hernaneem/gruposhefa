@@ -3,11 +3,22 @@
 //  ENCABEZADO / NAVEGACIÓN — GRUPO SHEFA
 //  Barra superior fija con el logo y los enlaces a las secciones del home.
 //  En celular, los enlaces se ocultan tras un botón de menú (☰).
+//
+//  MODO AISLADO (aislada={true}): las landings por empresa se sirven como
+//  páginas individuales, sin salidas hacia el resto del sitio. En ese modo la
+//  barra se queda solo con el logo (sin enlace) y desaparecen el menú de
+//  escritorio, el botón ☰ y el menú móvil. Lo activa el Layout.
 // ─────────────────────────────────────────────────────────────────────────────
 
 import LogoMarca from './LogoMarca.astro';
 import { enlaceWhatsapp, hayWhatsapp } from '../data/sitio.js';
 import { ruta } from '../lib/rutas.ts';
+
+interface Props {
+  aislada?: boolean;
+}
+
+const { aislada = false } = Astro.props;
 
 // Enlaces del menú. Como el home es de una sola página, apuntan a sus secciones
 // con #ancla. ruta() arma el enlace al inicio + el ancla, viva donde viva el sitio.
@@ -29,74 +40,92 @@ const destinoAgendar = hayWhatsapp ? enlaceWhatsapp : ruta('#contacto');
   class="fixed inset-x-0 top-0 z-50 border-b border-black/5 bg-white/90 backdrop-blur-md"
 >
   <div class="contenedor flex h-20 items-center justify-between gap-4">
-    <!-- Logo (isotipo en SVG + nombre, en los colores nuevos de la marca) -->
-    <a href={ruta()} class="flex items-center gap-3" aria-label="Grupo Shefa — inicio">
-      <LogoMarca class="h-10 w-10 text-azul-profundo md:h-11 md:w-11" />
-      <span class="font-titulo text-lg font-bold leading-tight tracking-wide text-azul-profundo">
-        GRUPO<br />SHEFA
-      </span>
-    </a>
+    <!-- Logo (isotipo en SVG + nombre, en los colores nuevos de la marca).
+         En modo aislado va sin enlace: es marca, no navegación. -->
+    {
+      aislada ? (
+        <div class="flex items-center gap-3">
+          <LogoMarca class="h-10 w-10 text-azul-profundo md:h-11 md:w-11" />
+          <span class="font-titulo text-lg font-bold leading-tight tracking-wide text-azul-profundo">
+            GRUPO<br />SHEFA
+          </span>
+        </div>
+      ) : (
+        <a href={ruta()} class="flex items-center gap-3" aria-label="Grupo Shefa — inicio">
+          <LogoMarca class="h-10 w-10 text-azul-profundo md:h-11 md:w-11" />
+          <span class="font-titulo text-lg font-bold leading-tight tracking-wide text-azul-profundo">
+            GRUPO<br />SHEFA
+          </span>
+        </a>
+      )
+    }
 
-    <!-- Navegación en computadora -->
-    <nav class="hidden items-center gap-8 lg:flex" aria-label="Navegación principal">
-      {
-        enlaces.map((e) => (
-          <a
-            href={e.destino}
-            class="font-titulo text-sm font-medium text-tinta/80 transition-colors hover:text-azul"
+    {
+      !aislada && (
+        <>
+          {/* Navegación en computadora */}
+          <nav class="hidden items-center gap-8 lg:flex" aria-label="Navegación principal">
+            {enlaces.map((e) => (
+              <a
+                href={e.destino}
+                class="font-titulo text-sm font-medium text-tinta/80 transition-colors hover:text-azul"
+              >
+                {e.texto}
+              </a>
+            ))}
+            <a href={ruta('#contacto')} class="boton-dorado !px-6 !py-2.5 text-sm">
+              Agende una consulta
+            </a>
+          </nav>
+
+          {/* Botón de menú en celular */}
+          <button
+            id="boton-menu"
+            class="inline-flex items-center justify-center rounded-md p-2 text-azul-profundo lg:hidden"
+            aria-label="Abrir menú"
+            aria-expanded="false"
+            aria-controls="menu-movil"
           >
-            {e.texto}
-          </a>
-        ))
-      }
-      <a href={ruta('#contacto')} class="boton-dorado !px-6 !py-2.5 text-sm">
-        Agende una consulta
-      </a>
-    </nav>
-
-    <!-- Botón de menú en celular -->
-    <button
-      id="boton-menu"
-      class="inline-flex items-center justify-center rounded-md p-2 text-azul-profundo lg:hidden"
-      aria-label="Abrir menú"
-      aria-expanded="false"
-      aria-controls="menu-movil"
-    >
-      <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-        <line x1="4" y1="7" x2="20" y2="7" />
-        <line x1="4" y1="12" x2="20" y2="12" />
-        <line x1="4" y1="17" x2="20" y2="17" />
-      </svg>
-    </button>
+            <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <line x1="4" y1="7" x2="20" y2="7" />
+              <line x1="4" y1="12" x2="20" y2="12" />
+              <line x1="4" y1="17" x2="20" y2="17" />
+            </svg>
+          </button>
+        </>
+      )
+    }
   </div>
 
-  <!-- Menú desplegable en celular (oculto por defecto) -->
-  <nav
-    id="menu-movil"
-    class="hidden border-t border-black/5 bg-white lg:hidden"
-    aria-label="Navegación móvil"
-  >
-    <div class="contenedor flex flex-col py-4">
-      {
-        enlaces.map((e) => (
-          <a
-            href={e.destino}
-            class="enlace-movil border-b border-black/5 py-3 font-titulo font-medium text-tinta/80"
-          >
-            {e.texto}
-          </a>
-        ))
-      }
-      <a
-        href={destinoAgendar}
-        target={hayWhatsapp ? '_blank' : undefined}
-        rel={hayWhatsapp ? 'noopener' : undefined}
-        class="boton-dorado mt-4"
+  {
+    !aislada && (
+      /* Menú desplegable en celular (oculto por defecto) */
+      <nav
+        id="menu-movil"
+        class="hidden border-t border-black/5 bg-white lg:hidden"
+        aria-label="Navegación móvil"
       >
-        Agende una consulta
-      </a>
-    </div>
-  </nav>
+        <div class="contenedor flex flex-col py-4">
+          {enlaces.map((e) => (
+            <a
+              href={e.destino}
+              class="enlace-movil border-b border-black/5 py-3 font-titulo font-medium text-tinta/80"
+            >
+              {e.texto}
+            </a>
+          ))}
+          <a
+            href={destinoAgendar}
+            target={hayWhatsapp ? '_blank' : undefined}
+            rel={hayWhatsapp ? 'noopener' : undefined}
+            class="boton-dorado mt-4"
+          >
+            Agende una consulta
+          </a>
+        </div>
+      </nav>
+    )
+  }
 </header>
 
 <!-- Espaciador para que el contenido no quede tapado por el encabezado fijo -->

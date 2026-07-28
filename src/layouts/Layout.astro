@@ -15,11 +15,18 @@ import { ruta } from '../lib/rutas.ts';
 interface Props {
   titulo: string;
   descripcion?: string;
+  /**
+   * Página individual, sin salidas al resto del sitio. Con esto, el encabezado
+   * y el pie se muestran sin menú de navegación. Lo usan las landings por
+   * empresa (src/pages/[empresa].astro), que se sirven de forma autónoma.
+   */
+  aislada?: boolean;
 }
 
 const {
   titulo,
   descripcion = sitio.descripcion,
+  aislada = false,
 } = Astro.props;
 
 // Título que aparece en la pestaña del navegador y en buscadores.
@@ -81,11 +88,11 @@ const datosEstructurados = {
   </head>
 
   <body class="flex min-h-screen flex-col">
-    <Header />
+    <Header aislada={aislada} />
     <main class="flex-1">
       <slot />
     </main>
-    <Footer />
+    <Footer aislada={aislada} />
     <BotonWhatsapp />
   </body>
 </html>

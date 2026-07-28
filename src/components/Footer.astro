@@ -3,12 +3,24 @@
 //  PIE DE PÁGINA — GRUPO SHEFA
 //  Fondo azul noche, con logo, navegación, datos de contacto y el enlace
 //  al Aviso de Privacidad.
+//
+//  MODO AISLADO (aislada={true}): en las landings por empresa se quita la
+//  columna de navegación (menú del home y lista de servicios), porque esas
+//  páginas se sirven como individuales. Se conservan los datos de contacto y
+//  el Aviso de Privacidad: ese último es obligatorio siempre que la página
+//  recabe datos personales, y la landing lleva formulario propio.
 // ─────────────────────────────────────────────────────────────────────────────
 
 import LogoMarca from './LogoMarca.astro';
 import { sitio, hayTelefono } from '../data/sitio.js';
 import { categorias } from '../data/servicios.js';
 import { ruta } from '../lib/rutas.ts';
+
+interface Props {
+  aislada?: boolean;
+}
+
+const { aislada = false } = Astro.props;
 
 const anio = new Date().getFullYear();
 
@@ -18,11 +30,16 @@ const enlaces = [
   { texto: 'Por qué Shefa', destino: ruta('#por-que-shefa') },
   { texto: 'Contacto', destino: ruta('#contacto') },
 ];
+
+// Sin la columna de navegación, el pie se acomoda en dos columnas.
+const columnas = aislada
+  ? 'md:grid-cols-2 lg:grid-cols-[1.4fr_1fr]'
+  : 'md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]';
 ---
 
 <footer class="bg-noche text-white">
   <div class="contenedor py-16">
-    <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]">
+    <div class:list={['grid gap-12', columnas]}>
       <!-- Marca -->
       <div>
         <div class="flex items-center gap-3">
@@ -37,34 +54,34 @@ const enlaces = [
         <p class="mt-5 font-titulo text-dorado">{sitio.tagline}</p>
       </div>
 
-      <!-- Navegación -->
-      <nav aria-label="Enlaces del sitio">
-        <h2 class="etiqueta mb-4 text-dorado">Navegación</h2>
-        <ul class="space-y-3 text-sm text-white/80">
-          {
-            enlaces.map((e) => (
-              <li>
-                <a href={e.destino} class="transition-colors hover:text-dorado">
-                  {e.texto}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
+      {
+        !aislada && (
+          /* Navegación */
+          <nav aria-label="Enlaces del sitio">
+            <h2 class="etiqueta mb-4 text-dorado">Navegación</h2>
+            <ul class="space-y-3 text-sm text-white/80">
+              {enlaces.map((e) => (
+                <li>
+                  <a href={e.destino} class="transition-colors hover:text-dorado">
+                    {e.texto}
+                  </a>
+                </li>
+              ))}
+            </ul>
 
-        <h2 class="etiqueta mb-4 mt-8 text-dorado">Servicios</h2>
-        <ul class="space-y-3 text-sm text-white/80">
-          {
-            categorias.map((c) => (
-              <li>
-                <a href={ruta('#servicios')} class="transition-colors hover:text-dorado">
-                  {c.titulo}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </nav>
+            <h2 class="etiqueta mb-4 mt-8 text-dorado">Servicios</h2>
+            <ul class="space-y-3 text-sm text-white/80">
+              {categorias.map((c) => (
+                <li>
+                  <a href={ruta('#servicios')} class="transition-colors hover:text-dorado">
+                    {c.titulo}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )
+      }
 
       <!-- Contacto -->
       <div>
