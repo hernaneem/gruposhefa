@@ -24,6 +24,8 @@ export const NOMBRES_PROHIBIDOS = [
   'Contenido Fuerza y Medios',
   'BAFF Laboratories',
   'BAFF',
+  'Colossal',
+  'LINKVIA',
 ];
 
 // Bancos del catálogo interno, y la palabra "CLABE" en sí. Esto SÍ puede vivir

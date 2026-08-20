@@ -209,6 +209,56 @@ export const empresas = [
       'Licenciamiento de software y plataformas digitales',
     ],
   },
+  {
+    slug: 'colossal',
+    titulo: 'Servicios de construcción y venta de materiales',
+    etiqueta: 'Construcción y materiales',
+    resumen:
+      'Edificamos su obra y le suministramos los materiales de construcción que necesita, con dirección de proyecto, control de costos y cumplimiento normativo en cada etapa.',
+    icono: 'estructura',
+    descripcion: [
+      'Una obra bien terminada empieza por una buena ejecución. Levantamos su proyecto de principio a fin —cimentación, obra negra, gris y acabados—, con dirección de obra, supervisión y control de costos en cada etapa, y cumplimiento normativo desde el primer trazo hasta la entrega.',
+      'Y porque una obra avanza al ritmo de sus materiales, también los suministramos: agregados, cemento y concreto, acero y estructura, e insumos para instalaciones y acabados, entregados en obra cuando se necesitan. Una sola coordinación para construir y abastecer, sin depender de terceros.',
+    ],
+    ofrece: [
+      'Edificación y construcción de obra civil',
+      'Cimentación, obra negra, gris y acabados',
+      'Construcción de naves industriales y espacios comerciales',
+      'Ampliaciones y remodelaciones',
+      'Proyectos ejecutivos y dirección de obra',
+      'Supervisión de obra y control de costos',
+      'Venta de materiales de construcción',
+      'Suministro de agregados, cemento y concreto',
+      'Suministro de acero y estructura metálica',
+      'Materiales para instalaciones y acabados',
+      'Entrega de materiales en obra',
+      'Cumplimiento normativo en obra',
+    ],
+  },
+  {
+    slug: 'linkvia',
+    titulo: 'Comercialización de textiles e insumos para confección',
+    etiqueta: 'Textil y confección',
+    resumen:
+      'Le suministramos telas, textiles e insumos para confección —de la materia prima a los avíos—, con abasto oportuno y volumen para sostener su producción.',
+    icono: 'textil',
+    descripcion: [
+      'La confección depende de un abasto confiable. Comercializamos y distribuimos telas y textiles —tejido plano y de punto, en fibras naturales y sintéticas— junto con todos los componentes que una prenda requiere: hilos, cierres, botones, entretelas, elásticos, etiquetas y avíos en general.',
+      'Trabajamos con volumen y con proveedores establecidos, de modo que su empresa reciba la materia prima y los insumos correctos, en la cantidad y el momento que su producción necesita, sin frenar la línea por faltantes.',
+    ],
+    ofrece: [
+      'Comercialización de telas y textiles',
+      'Tejido plano y de punto, en fibras naturales y sintéticas',
+      'Distribución de insumos para confección',
+      'Hilos, cierres, botones y broches',
+      'Entretelas, elásticos y cintas',
+      'Etiquetas, avíos y accesorios para prenda',
+      'Materiales para acabado y empaque de prenda',
+      'Abasto por volumen para producción',
+      'Surtido a la medida de cada pedido',
+      'Entrega y logística de materiales',
+    ],
+  },
 ];
 
 // Nota: aquí vivía otrasEmpresas(), que sugería tres empresas al pie de cada
