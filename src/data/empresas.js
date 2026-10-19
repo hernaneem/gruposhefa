@@ -259,6 +259,35 @@ export const empresas = [
       'Entrega y logística de materiales',
     ],
   },
+  {
+    slug: 'vexor',
+    titulo: 'Comercialización y venta de productos al mayoreo',
+    etiqueta: 'Comercializadora y mayorista',
+    resumen:
+      'Le surtimos al mayoreo los productos que su operación consume —artículos de limpieza, materiales de construcción e insumos generales— con precio por volumen y entregas programadas, y le ayudamos a promover lo que usted vende.',
+    icono: 'almacen',
+    descripcion: [
+      'Una operación no puede detenerse por falta de insumos. Comercializamos y distribuimos al mayoreo los productos de uso continuo de su empresa: artículos y químicos de limpieza, consumibles de higiene, materiales para la construcción y los insumos generales que su negocio requiere, con inventario disponible y surtido por volumen.',
+      'Compramos en volumen directamente a fabricantes y distribuidores, y eso nos permite darle a su empresa precios de mayoreo y condiciones estables. Armamos cada pedido a la medida, programamos entregas recurrentes y respondemos por la entrega en su almacén, su obra o su punto de venta.',
+      'Complementamos el abasto con servicios de publicidad: planeamos y ejecutamos campañas, producimos el material publicitario y de punto de venta, y suministramos artículos promocionales para que su marca y sus productos lleguen a su cliente.',
+    ],
+    ofrece: [
+      'Venta al mayoreo y medio mayoreo',
+      'Artículos y productos de limpieza',
+      'Químicos, consumibles y desechables de higiene',
+      'Materiales para la construcción',
+      'Insumos generales para empresas',
+      'Precios por volumen y listas para clientes recurrentes',
+      'Surtido a la medida de cada pedido',
+      'Programación de entregas recurrentes',
+      'Distribución y entrega en almacén, obra o punto de venta',
+      'Abasto para distribuidores y puntos de venta',
+      'Servicios de agencia de publicidad',
+      'Planeación y ejecución de campañas publicitarias',
+      'Material publicitario y para punto de venta',
+      'Suministro de artículos promocionales',
+    ],
+  },
 ];
 
 // Nota: aquí vivía otrasEmpresas(), que sugería tres empresas al pie de cada

@@ -26,6 +26,8 @@ export const NOMBRES_PROHIBIDOS = [
   'BAFF',
   'Colossal',
   'LINKVIA',
+  'Grupo Comercializador VEXOR',
+  'VEXOR',
 ];
 
 // Bancos del catálogo interno, y la palabra "CLABE" en sí. Esto SÍ puede vivir

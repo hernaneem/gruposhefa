@@ -14,8 +14,8 @@ import { NOMBRES_PROHIBIDOS, DATOS_PROHIBIDOS, PATRONES_PROHIBIDOS } from '../sr
 const CAMPOS_TEXTO = ['slug', 'titulo', 'etiqueta', 'resumen', 'icono'];
 const CAMPOS_LISTA = ['descripcion', 'ofrece'];
 
-test('hay exactamente diez empresas', () => {
-  assert.equal(empresas.length, 10);
+test('hay exactamente once empresas', () => {
+  assert.equal(empresas.length, 11);
 });
 
 test('cada empresa trae todos sus campos con contenido', () => {
